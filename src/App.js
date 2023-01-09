@@ -1,9 +1,12 @@
-import './style/reset.css';
-import './style/base.css';
-
+import './styles/_main.scss';
+import React from 'react';
+import Header from './components/Header';
 const App = () => {
 return(
-  <h1>test</h1>
+  <React.Fragment>
+    <Header />
+  </React.Fragment>
+  
 )
 };
 
