@@ -1,5 +1,4 @@
 import React from 'react';
-import '../styles/_header.scss';
 import { ReactComponent as ToggleIcon } from '../assets/toggle.svg';
 import { ReactComponent as SearchIcon } from '../assets/search.svg';
 import { ReactComponent as CartIcon } from '../assets/cart.svg';
