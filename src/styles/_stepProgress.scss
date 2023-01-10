@@ -1,0 +1,174 @@
+%done-phase {
+  .icon {
+    display: inline-block;
+  }
+  .text {
+    display: none;
+  }
+}
+%undone-phase {
+  .icon {
+    display: none;
+  }
+  .text {
+    display: inline-block;
+  }
+}
+%current-text {
+  color: var(--progress-current-color);
+}
+%current-icon {
+  @extend %current-text;
+  background-color: transparent;
+  border: 1px solid var(--progress-current-color);
+  @extend %undone-phase;
+}
+%undone-text {
+  color: var(--progress-undone-color);
+}
+%undone-icon {
+  @extend %undone-text;
+  background-color: transparent;
+  border: 1px solid var(--progress-undone-color);
+  @extend %undone-phase;
+}
+%done-text {
+  @extend %current-text;
+}
+%done-icon {
+  color: var(--progress-done-color);
+  background-color: transparent;
+  @extend %done-phase;
+}
+
+section.register-container {
+  h2.register-title {
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 38px;
+    color: var(--main-text);
+  }
+}
+
+section.progress-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 48px;
+
+  .progress-bar {
+    display: flex;
+    flex-grow: 1;
+    max-width: 60px;
+    height: 1px;
+    margin: 0px 8px;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 15px;
+  }
+
+  .progress-group {
+    display: flex;
+
+    .progress-icon {
+      display: inline-block;
+      position: relative;
+      width: 24px;
+      height: 24px;
+      margin-right: 8px;
+      border-radius: 50%;
+
+      .text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        font-size: 12px;
+        font-weight: 700;
+        text-align: center;
+        color: inherit;
+      }
+      .icon {
+        width: inherit;
+        height: inherit;
+      }
+    }
+    .progress-label {
+      font-weight: 400;
+      line-height: 24px;
+      color: var(--main-text);
+    }
+  }
+}
+
+$phase-map: (
+  1: 'address',
+  2: 'shipping',
+  3: 'credit-card',
+);
+@for $index from 1 to 4 {
+  section.register-container[data-phase='#{$index}'] {
+    // progress-bar
+    .progress-bar {
+      &[data-order='1'] {
+        border-color: var(--done-progress-border);
+      }
+      &[data-order='2'] {
+        @if $index == 1 {
+          border-color: var(--undone-progress-border);
+        } @else {
+          border-color: var(--done-progress-border);
+        }
+      }
+    }
+
+    @each $key, $phase in $phase-map {
+      // progress-group
+      .progress-group[data-phase='#{$phase}'] {
+        @if $key > $index {
+          .progress-icon {
+            @extend %undone-icon;
+          }
+          .progress-label {
+            @extend %undone-text;
+          }
+        } @else if $key == $index {
+          .progress-icon {
+            @extend %current-icon;
+          }
+          .progress-label {
+            @extend %current-text;
+          }
+        } @else {
+          .progress-icon {
+            @extend %done-icon;
+          }
+          .progress-label {
+            @extend %done-text;
+          }
+        }
+
+        @if $phase == 'address' {
+          .progress-icon {
+            background-color: var(--pg-addr-bg-color);
+            border-color: var(--pg-addr-bg-color);
+            .text {
+              color: var(--pg-addr-color);
+            }
+          }
+        }
+      }
+
+      // progress-control
+      & ~ section.progress-control-container {
+        .button-group[data-phase='#{$phase}'] {
+          @if $index == $key {
+            display: flex;
+          } @else {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}

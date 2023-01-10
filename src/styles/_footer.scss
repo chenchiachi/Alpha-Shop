@@ -1,7 +1,6 @@
 footer.site-footer {
   display: block;
-  position: absolute;
-  width:100%;
+  position: relative;
   bottom: 0px;
   margin-top: 120px;
   padding-left: var(--site-edge-margin);
@@ -69,4 +68,10 @@ footer.site-footer {
       }
     }
   }
+}
+
+@media screen and (max-width: $screen-break-point) {
+    footer.site-footer {
+        display: none;
+    }
 }

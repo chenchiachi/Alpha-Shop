@@ -13,7 +13,7 @@ header.site-header {
   top: 0px;
   padding-left: var(--site-edge-margin);
   padding-right: var(--site-edge-margin);
-  background-color: inherit;
+  background-color: var(--background-color);
   text-align: center;
   z-index: 100;
 
