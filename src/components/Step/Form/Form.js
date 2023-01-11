@@ -6,6 +6,7 @@ const Form = () => {
     <section className="form-container">
       <form >
         <Step1 />
+        <Step2 />
       </form>
     </section>
   )
