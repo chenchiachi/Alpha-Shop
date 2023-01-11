@@ -1,10 +1,12 @@
 import StepProgress from "./Step/StepProgress";
+import Form from "./Step/Form/Form";
 
 const Main = () => {
   return (
-    <main class="site-main">
-      <div class="main-container">
-     <StepProgress />
+    <main className="site-main">
+      <div className="main-container">
+        <StepProgress />
+        <Form />
       </div>
     </main>
   )
