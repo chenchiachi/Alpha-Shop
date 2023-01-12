@@ -1,7 +1,7 @@
-section.form-container {
-  width: 100%;
+.form-container {
+   margin-top: 64px;
+   width: 100%;
   h3.form-title {
-    margin-top: 60px;
     display: flex;
     flex: 0 0 100%;
     font-weight: 700;
@@ -13,7 +13,7 @@ section.form-body {
   height: 270px;
   margin-top: 24px;
   display: grid;
-  width: 100%;
+  // width: 100%;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 12px;
   .input-title {
@@ -275,7 +275,6 @@ section.button-group {
 @media screen and (max-width: $screen-break-point) {
   section.progress-container {
     margin-top: 24px;
-
     .progress-group {
       .progress-icon {
         width: 32px;
