@@ -5,7 +5,7 @@ const SelectGroup = props => {
       <label className='input-label'>{props.label}</label>
       <div className='select-container'>
         <select required>
-          {props.options.map(option => <option value={option.value}>{option.name}</option>)}
+          {props.options.map(option => <option key={option.value}value={option.value}>{option.name}</option>)}
 
         </select>
       </div>

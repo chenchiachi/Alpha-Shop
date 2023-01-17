@@ -1,38 +1,50 @@
 import React from 'react';
 import { ReactComponent as CompleteIcon } from '../../assets/pg-complete.svg';
 
+function Step({ currentStep, step, label }) {
+  return (
+    <span className={`progress-group ${ currentStep >=step ? 'step-current' : ''}`} >
+      <span className="progress-icon  ">
+        <span className="text">
+        {currentStep > step ? <CompleteIcon className="icon" /> : step}
+        </span>
+      </span>
+      <span className="progress-label">{label}</span>
+    </span>
+  )
+}
 
-const StepProgress =() => {
-return (
-  <React.Fragment>
+const ProgressBar = ({className}) => {
+  return (
+    <span className={className}></span>
+  );
+}
+
+const StepProgress = ({ currentStep }) => {
+  return (
+    <React.Fragment>
       <h2 className="register-title col col-12">結帳</h2>
-    <section className="progress-container col col-12">
-      <span className="progress-group" data-phase="address">
-        <span className="progress-icon">
-          <span className="text">1</span>
-          <CompleteIcon className="icon cursor-point" />
-        </span>
-        <span className="progress-label">寄送地址</span>
-      </span>
-      <span className="progress-bar" data-order="1"></span>
-      <span className="progress-group" data-phase="shipping">
-        <span className="progress-icon">
-          <span className="text">2</span>
-          <CompleteIcon className="icon cursor-point" />
-        </span>
-        <span className="progress-label">運送方式</span>
-      </span>
-      <span className="progress-bar" data-order="2"></span>
-      <span className="progress-group" data-phase="credit-card">
-        <span className="progress-icon">
-          <span className="text">3</span>
-          <CompleteIcon className="icon cursor-point" />
-        </span>
-        <span className="progress-label">付款資訊</span>
-      </span>
-    </section>
-  </React.Fragment>
-)
+      <section className="progress-container col col-12">
+        <Step
+          currentStep={currentStep}
+          step={1}
+          label={'寄送地址'}
+        />
+        <ProgressBar className="progress-bar"/>
+        <Step
+          currentStep={currentStep}
+          step={2}
+          label={'運送方式'}
+        />
+        <ProgressBar className={`progress-bar${currentStep >= 2 ? '' : '-undone'}`} />
+        <Step
+          currentStep={currentStep}
+          step={3}
+          label={'付款資訊'}
+        />
+      </section>
+    </React.Fragment>
+  )
 };
 
 export default StepProgress;

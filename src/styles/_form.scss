@@ -183,12 +183,12 @@ section.form-body {
   }
 }
 
-section.progress-control-container {
-  position: absolute;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
-}
+// section.progress-control-container {
+//   position: absolute;
+//   left: 0px;
+//   right: 0px;
+//   bottom: 0px;
+// }
 
 section.button-group {
   padding-top: 24px;
@@ -273,40 +273,13 @@ section.button-group {
 }
 
 @media screen and (max-width: $screen-break-point) {
-  section.progress-container {
-    margin-top: 24px;
-    .progress-group {
-      .progress-icon {
-        width: 32px;
-        height: 32px;
-        margin-right: 0px;
-
-        .text {
-          line-height: 32px;
-        }
-      }
-    }
-    .progress-label {
-      display: none;
-    }
-  }
   section.form-container {
     margin-top: 24px;
-  }
-  section.progress-control-container {
     position: relative;
-    margin-top: 24px;
-    margin-bottom: 40px;
   }
   section.button-group {
     button.next {
       width: 156px;
-    }
-
-    &[data-phase="address"] {
-      button.next {
-        width: 100%;
-      }
     }
   }
 }

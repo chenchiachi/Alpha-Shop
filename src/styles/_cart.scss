@@ -59,6 +59,10 @@ section.product-list {
           height: 26px;
           cursor: pointer;
         }
+        button {
+          border: none;
+          background: none;
+        }
 
         .product-count {
           display: inline-block;
