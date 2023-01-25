@@ -26,7 +26,7 @@ return (
       />
       <InputGroup
         id='card-cvc'
-        type='number'
+        type='password'
         label='CVC / CCV'
         placeholder='123'
       />

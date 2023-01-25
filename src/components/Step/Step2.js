@@ -16,7 +16,7 @@ const shippingOptions = [
   }
 ]
 
-const Shipping = ({ id, name, price, shippingTime, onChangeFee, isChecked }) => {
+const Shipping = ({ id, name, price, shippingTime, onChangeFee }) => {
   return (
     <label className='radio-group col col-12'>
       <input id={id} type='radio' name='shipping' onClick={onChangeFee} />

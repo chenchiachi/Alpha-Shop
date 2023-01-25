@@ -1,6 +1,13 @@
+import { useContext } from 'react';
 import { ReactComponent as RightArrow } from '../../assets/right-arrow.svg';
 import { ReactComponent as LeftArrow } from '../../assets/left-arrow.svg';
+import { FormContext } from '../store/FormContext';
 const ProgressControl = ({ currentStep, onChange }) => {
+  const { formData } = useContext(FormContext)
+  const handleSubmitClick = (e) => {
+    e.preventDefault()
+    console.log(formData)
+  }
 
   return (
     <section className='progress-control-container col col-lg-6 col-sm-12'>
@@ -28,7 +35,7 @@ const ProgressControl = ({ currentStep, onChange }) => {
             <LeftArrow className='svg' />
             上一步
           </button>
-          <button className='next cursor-point'>
+          <button type="submit" className='next cursor-point' onClick={handleSubmitClick}>
             確認下單
           </button>
         </section>}

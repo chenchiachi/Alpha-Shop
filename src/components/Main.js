@@ -1,31 +1,42 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import Form from './Step/Form/Form';
 import Cart from './Step/Cart';
-import ProgressControl from './Step/ProgressControl';
-const Main = props => {
-  const [currentStep, setCurrentStep] = useState(1)
-  const [fee, setFee] = useState(0)
+import { useInitialItems, CartProvider } from './store/CartContext';
+import { FormContext } from './store/FormContext';
 
-  const stepHandler = (e) => {
-    const progressBtn = e.target.id
-    if (progressBtn === 'next') {
-      setCurrentStep(currentStep + 1)
-    }
-    if (progressBtn === 'prev') {
-      setCurrentStep(currentStep - 1)
-    }
-  };
+const Main = () => {
+  const [fee, setFee] = useState(0)
+  const initialItems = useInitialItems()
+  const formContext = useContext(FormContext)
+  const [formData, setFormData] = useState(formContext)
 
   const feeHandler = (shipping) => {
     setFee(shipping.price)
   }
-
+  const handleFormChange = (e) => {
+    const value = e.target.value
+    const key = e.target.id
+    setFormData({
+      ...formData,
+      [key]: value
+    })
+  }
   return (
     <main className='site-main'>
       <div className='main-container'>
-        <Form currentStep={currentStep} onChangeFee={feeHandler} />
-        <Cart fee={fee} />
-        <ProgressControl onChange={stepHandler} currentStep={currentStep} />
+        <FormContext.Provider
+          value={{
+            formData,
+            setFormData,
+            handleFormChange,
+          }}
+        >
+          <Form onChangeFee={feeHandler} />
+
+          <CartProvider initialItems={initialItems}>
+            <Cart fee={fee} />
+          </CartProvider>
+        </FormContext.Provider>
       </div>
     </main>
   )

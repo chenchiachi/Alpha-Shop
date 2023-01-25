@@ -1,29 +1,13 @@
 import { useState } from 'react';
 import { useEffect } from 'react';
 import CartItem from './CartItem';
-import product1Img from '../../assets/product-1.jpg';
-import product2Img from '../../assets/product-2.jpg';
+import { useInitialItems } from '../store/CartContext';
 
-const DUMMY_ITEMS = [
-  {
-    id: 1,
-    name: '破壞補丁修身牛仔褲',
-    img: product1Img,
-    price: 100,
-    quantity: 0,
-  },
-  {
-    id: 2,
-    name: '刷色直筒牛仔褲',
-    img: product2Img,
-    price: 200,
-    quantity: 0,
-  }
-];
 
 const Cart = ({ fee }) => {
+  const initialItems = useInitialItems()
 
-  const [items, setItems] = useState(DUMMY_ITEMS)
+  const [items, setItems] = useState(initialItems)
 
   const [amount, setAmount] = useState(0)
 
